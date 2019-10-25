@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -16,6 +11,7 @@ namespace TRMDesktopUI.Helpers
                 typeof(string),
                 typeof(PasswordBoxHelper),
                 new FrameworkPropertyMetadata(string.Empty, OnBoundPasswordChanged));
+
 
         public static string GetBoundPassword(DependencyObject d) {
             var box = d as PasswordBox;
