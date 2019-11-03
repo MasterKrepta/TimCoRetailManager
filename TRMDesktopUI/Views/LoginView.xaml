@@ -28,6 +28,7 @@
         </TextBlock>
         
         
+        
         <!--Error message row-->
         <TextBlock x:Name="ErrorMessage" 
                    Visibility="{Binding IsErrorVisible, Converter={StaticResource BooleanToVisibilityConverter}, FallbackValue=Collapsed}"
