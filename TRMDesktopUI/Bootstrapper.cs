@@ -8,6 +8,8 @@ using System.Windows;
 using System.Windows.Controls;
 using TRMDesktopUI.Helpers;
 using TRMDesktopUI.ViewModels;
+using TRMDestopUI.Library.Api;
+using TRMDestopUI.Library.Models;
 
 namespace TRMDesktopUI
 {
@@ -30,6 +32,7 @@ namespace TRMDesktopUI
             container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()
+                .Singleton<ILoggedInUserModel, LoggedInUserModel>()
                 .Singleton<IAPIHelper, APIHelper>();
 
 
