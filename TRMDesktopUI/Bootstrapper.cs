@@ -15,7 +15,7 @@ namespace TRMDesktopUI
 {
     public class Bootstrapper : BootstrapperBase
     {
-        private SimpleContainer container = new SimpleContainer();
+        private SimpleContainer _container = new SimpleContainer();
 
         public Bootstrapper() {
             Initialize();
@@ -27,9 +27,9 @@ namespace TRMDesktopUI
         }
 
         protected override void Configure() {
-            container.Instance(container);
+            _container.Instance(_container);
 
-            container
+            _container
                 .Singleton<IWindowManager, WindowManager>()
                 .Singleton<IEventAggregator, EventAggregator>()
                 .Singleton<ILoggedInUserModel, LoggedInUserModel>()
@@ -40,7 +40,7 @@ namespace TRMDesktopUI
                 .Where(type => type.IsClass)
                 .Where(type => type.Name.EndsWith("ViewModel"))
                 .ToList()
-                .ForEach(viewModelType => container.RegisterPerRequest(
+                .ForEach(viewModelType => _container.RegisterPerRequest(
                     viewModelType, viewModelType.ToString(), viewModelType));
         }
 
@@ -49,15 +49,15 @@ namespace TRMDesktopUI
         }
 
         protected override object GetInstance(Type service, string key) {
-            return container.GetInstance(service, key);
+            return _container.GetInstance(service, key);
         }
 
         protected override IEnumerable<object> GetAllInstances(Type service) {
-            return container.GetAllInstances(service);
+            return _container.GetAllInstances(service);
         }
 
         protected override void BuildUp(object instance) {
-            container.BuildUp(instance);
+            _container.BuildUp(instance);
         }
     }
 }
