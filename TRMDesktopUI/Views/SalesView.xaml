@@ -73,7 +73,6 @@
                 <DataTemplate>
                     <TextBlock Text="{Binding DisplayText}"/>
                 </DataTemplate>
-
             </ListBox.ItemTemplate>
         </ListBox>
 
