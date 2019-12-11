@@ -57,31 +57,35 @@ namespace TRMDataManger.Library.DataAccess
 
             sale.Total = sale.SubTotal + sale.Tax;
 
-            //Save Sale Record
-            SqlDataAccess sql = new SqlDataAccess(); // CRINGE!!!!!
-            sql.SaveData("dbo.spSale_Insert", sale, "TRMData");
-
-            //Get id from sale..
-            sale.Id = sql.LoadData<int, dynamic>("spSale_Lookup", new { sale.CashierId, sale.SaleDate }, "TRMData").FirstOrDefault();
-
-            //fill in rest
-            foreach (var item in details)
-            {
-                item.SaleId = sale.Id;
-                sql.SaveData("dbo.spSaleDetail_Insert", item, "TRMData");
-            }
-
             
 
+
+            using (SqlDataAccess sql = new SqlDataAccess())
+            {
+                try
+                {
+                    //Save Sale Record
+                    sql.StartTransaction("TRMData");
+                    sql.SaveDataInTransaction("dbo.spSale_Insert", sale);
+
+                    //Get id from sale..
+                    sale.Id = sql.LoadDataInTransaction<int, dynamic>("spSale_Lookup", new { sale.CashierId, sale.SaleDate }).FirstOrDefault();
+
+                    //fill in rest
+                    foreach (var item in details)
+                    {
+                        item.SaleId = sale.Id;
+                        sql.SaveDataInTransaction("dbo.spSaleDetail_Insert", item);
+                    }
+
+                    sql.CommitTransaction();
+                }
+                catch
+                {
+                    sql.RollbackTransaction();
+                    throw;
+                }
+            }
         }
-
-        //public List<ProductModel> GetProducts()
-        //{
-        //    SqlDataAccess sql = new SqlDataAccess(); // CRINGE!!!!!
-
-        //    var output = sql.LoadData<ProductModel, dynamic>("dbo.spProduct_GetAll", new { }, "TRMData"); // TODO change this
-
-        //    return output;
-        //}
     }
 }
