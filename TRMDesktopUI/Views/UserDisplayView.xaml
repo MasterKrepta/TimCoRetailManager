@@ -18,21 +18,21 @@
             <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto" MinWidth="58"/>
+            <ColumnDefinition Width="auto" MinWidth="162"/>
             <ColumnDefinition Width="111.16"/>
             <ColumnDefinition Width="99.84"/>
             <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <!--Header-->
-        <TextBlock Text="User Administration" FontSize="48" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="6" 
-                   Margin="0,0,0,20"/>
+        <TextBlock Text="User Administration" FontSize="48" Grid.Row="0"
+                   Grid.Column="0" Grid.ColumnSpan="3" Margin="0,0,0,20"/>
 
         <!--Column 0-->
         <TextBlock Text="Users" Grid.Row="1" Grid.Column="0" />
         <ListBox x:Name="Users" Grid.Row="2" Grid.Column="0" 
-                  MinHeight="200" MinWidth="150" Grid.ColumnSpan="5">
+                  MinHeight="200" MinWidth="150" SelectedItem="SelectedUser">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
@@ -49,8 +49,20 @@
 
 
 
-
-
+        <!--Column 1-->
+        <StackPanel Orientation="Vertical" Grid.Row="1" Grid.Column="1" Grid.RowSpan="2" 
+                    Margin=" 20 0 0 0">
+            <TextBlock x:Name="SelectedUserName" Margin="0 0 0 10"/>
+            <TextBlock  Text="Current Roles"/>
+            <StackPanel Orientation="Horizontal" Margin="0 0 0 10">
+                <ListBox x:Name="UserRoles" ></ListBox>
+                <Button x:Name="RemoveSelectedRole" Content="Remove" Margin="5 0 0 0"/>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <ComboBox x:Name="AvailableRoles"/>
+                <Button x:Name="AddSelectedRole" Content="Add Role" Margin="5 0 0 0"/>
+            </StackPanel>
+        </StackPanel>
 
 
 
