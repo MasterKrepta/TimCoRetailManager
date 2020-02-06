@@ -12,6 +12,7 @@ namespace TRMDestopUI.Library.Helpers
         public decimal GetTaxRate()
         {
             //TODO put this into the API
+
             string rateText = ConfigurationManager.AppSettings["taxRate"];
 
             bool isValidTaxRate = decimal.TryParse(rateText, out decimal output);
