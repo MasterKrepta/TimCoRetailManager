@@ -31,6 +31,7 @@ namespace TRMApi.Controllers
             this._userManager = userManager;
             _config = config;
         }
+
         [HttpGet]
         public UserModel GetById()
         {
