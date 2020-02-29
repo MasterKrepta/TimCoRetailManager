@@ -50,6 +50,7 @@ namespace TRMApi.Controllers
             //{
             //    await _userManager.AddToRoleAsync(user, "Admin");
             //    await _userManager.AddToRoleAsync(user, "Cashier");
+
             //}
             return View();
         }

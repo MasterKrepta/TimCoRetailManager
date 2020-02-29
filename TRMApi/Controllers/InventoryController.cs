@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using TRMDataManger.Library.DataAccess;
 using TRMDataManger.Library.Models;
 
@@ -15,17 +16,23 @@ namespace TRMApi.Controllers
     [Authorize]
     public class InventoryController : ControllerBase
     {
+        private readonly IConfiguration _config;
+
+        public InventoryController(IConfiguration config)
+        {
+            _config = config;
+        }
         [Authorize(Roles = "Manager,Admin")]
         public List<InventoryModel> GetSalesReport()
         {
-            InventoryData data = new InventoryData();
+            InventoryData data = new InventoryData(_config);
             return data.GetInventory();
         }
 
         [Authorize(Roles = "Admin")]
         public void Post(InventoryModel item)
         {
-            InventoryData data = new InventoryData();
+            InventoryData data = new InventoryData(_config);
             data.SaveInventoryRecord(item);
         }
     }
