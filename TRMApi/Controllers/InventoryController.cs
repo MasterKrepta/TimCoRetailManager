@@ -23,13 +23,15 @@ namespace TRMApi.Controllers
             _config = config;
         }
         [Authorize(Roles = "Manager,Admin")]
-        public List<InventoryModel> GetSalesReport()
+        [HttpGet]
+        public List<InventoryModel> Get()
         {
             InventoryData data = new InventoryData(_config);
             return data.GetInventory();
         }
 
         [Authorize(Roles = "Admin")]
+        [HttpPost]
         public void Post(InventoryModel item)
         {
             InventoryData data = new InventoryData(_config);

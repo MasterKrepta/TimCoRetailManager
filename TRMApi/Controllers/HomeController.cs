@@ -44,7 +44,7 @@ namespace TRMApi.Controllers
             //    }
             //}
 
-            //var user = await _userManager.FindByEmailAsync("test@test.com");//TODO hard coding
+            //var user = await _userManager.FindByEmailAsync("Brian@test.com");//TODO hard coding
 
             //if (user != null)
             //{

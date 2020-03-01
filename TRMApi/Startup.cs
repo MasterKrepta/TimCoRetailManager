@@ -58,6 +58,19 @@ namespace TRMApi
                 };
             }
             );
+
+            services.AddSwaggerGen(setup =>
+            {
+                setup.SwaggerDoc(
+                    "v1",
+                    new Microsoft.OpenApi.Models.OpenApiInfo
+                    {
+                        Title = "Timco retail manager api",
+                        Version = "v1"
+                    });
+            });
+            
+            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -81,6 +94,12 @@ namespace TRMApi
 
             app.UseAuthentication();
             app.UseAuthorization();
+
+            app.UseSwagger();
+            app.UseSwaggerUI(x => 
+            {
+                x.SwaggerEndpoint("/swagger/v1/swagger.json", "timco api v1");
+            });
 
             app.UseEndpoints(endpoints =>
             {

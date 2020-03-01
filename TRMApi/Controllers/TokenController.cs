@@ -69,13 +69,13 @@ namespace TRMApi.Controllers
             var token = new JwtSecurityToken(
                 new JwtHeader(
                     new SigningCredentials(
-                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySecretKeyIsSecretDoNotTellAnyonePlease")),
+                        new SymmetricSecurityKey(Encoding.UTF8.GetBytes("MySecretKeyIsSecretSoDoNotTell")),
                         SecurityAlgorithms.HmacSha256)),
                 new JwtPayload(claims));
 
             var output = new
             {
-                Acceess_Token = new JwtSecurityTokenHandler().WriteToken(token),
+                Access_Token = new JwtSecurityTokenHandler().WriteToken(token),
                 UserName = username
             };
 

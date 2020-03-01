@@ -13,7 +13,7 @@ namespace TRMDesktopUI.ViewModels
     public class LoginViewModel :Screen
     {
 
-        private string _userName ="test@test.com";
+        private string _userName ="Brian@test.com";
         private string _password = "@Sierra117";
         private string _errorMessage;
         private IAPIHelper _apiHelper;
