@@ -33,6 +33,8 @@ namespace TRMApi.Controllers
         }
 
         [HttpGet]
+        //[Route("Admin/GetById")]
+        //TODO testing this
         public UserModel GetById()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);//RequestContext.Principal.Identity.GetUserId();
