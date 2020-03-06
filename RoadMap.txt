@@ -1,0 +1,20 @@
+Ideas for application:
+----------------------
+ * inventory interaction is not working yet
+ * move API to azure (there is a cost )
+ * CI/CD process (unit tests)
+ * Deploy desktop app to blob storage for download
+ * web based inventory control system, possibly blazor
+ * web based reporting
+ * Xamarin Forms app for a mobile register
+
+
+Phase 2 planning
+----------------
+ 1. start using .NET Core - D Inject
+ 2. Set up task board in azure devops
+ 3. ci/cd with Azure DevOps
+ 4. Move api to Azure
+ 5. Database to Azure SQL
+ 6. Deploy to Azure Blob storage
+ 7. Web based inventory control
