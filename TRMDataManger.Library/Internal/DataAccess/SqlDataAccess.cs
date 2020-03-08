@@ -11,24 +11,24 @@ using System.Threading.Tasks;
 
 namespace TRMDataManger.Library.Internal.DataAccess
 {
-    public class SqlDataAccess : IDisposable
+    public class SqlDataAccess : IDisposable, ISqlDataAccess
     {
         public SqlDataAccess(IConfiguration config)
         {
             _config = config;
         }
-        
-        public string GetConnectionString(string name) 
+
+        public string GetConnectionString(string name)
         {
             return _config.GetConnectionString(name);
             //return ConfigurationManager.ConnectionStrings[name].ConnectionString;
         }
 
-        public List<T> LoadData<T, U>(string storedProcedure, U parameters, string connectionStringName) 
+        public List<T> LoadData<T, U>(string storedProcedure, U parameters, string connectionStringName)
         {
             string connectionString = GetConnectionString(connectionStringName);
 
-            using (IDbConnection connection = new SqlConnection(connectionString)) 
+            using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 List<T> rows = connection.Query<T>(storedProcedure, parameters,
                     commandType: CommandType.StoredProcedure).ToList();
@@ -41,7 +41,7 @@ namespace TRMDataManger.Library.Internal.DataAccess
         {
             string connectionString = GetConnectionString(connectionStringName);
 
-            using (IDbConnection connection = new SqlConnection(connectionString)) 
+            using (IDbConnection connection = new SqlConnection(connectionString))
             {
                 connection.Execute(storedProcedure, parameters,
                       commandType: CommandType.StoredProcedure);
@@ -64,8 +64,8 @@ namespace TRMDataManger.Library.Internal.DataAccess
 
         public void SaveDataInTransaction<T>(string storedProcedure, T parameters)
         {
-                _connection.Execute(storedProcedure, parameters,
-                      commandType: CommandType.StoredProcedure, transaction: _transaction);
+            _connection.Execute(storedProcedure, parameters,
+                  commandType: CommandType.StoredProcedure, transaction: _transaction);
         }
 
         public List<T> LoadDataInTransaction<T, U>(string storedProcedure, U parameters)
@@ -114,10 +114,5 @@ namespace TRMDataManger.Library.Internal.DataAccess
             _connection = null;
         }
 
-        //Open transaction/start transaction
-        //load using transacation
-        //save using transaction
-        //close connection/stop transaction
-        //dispose
     }
 }

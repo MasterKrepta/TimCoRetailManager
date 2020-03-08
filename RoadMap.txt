@@ -9,6 +9,7 @@ Ideas for application:
  * Xamarin Forms app for a mobile register
 
 
+
 Phase 2 planning
 ----------------
  1. start using .NET Core - D Inject
